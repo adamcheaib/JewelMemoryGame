@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background-color: brown;
+}
+
+#gameContainer {
+    height:750px;
+    width: 850px;
+    padding: 20px;
+    background-color: lightblue;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    border-radius: 10px;
+    border:solid 1px black;
+}
+
+.gameOption {
+    border-radius: 5px;
+    border: solid 1px black;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: white;
+}
