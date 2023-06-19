@@ -34,6 +34,11 @@ body {
     cursor: pointer;
 }
 
+.wrong {
+
+}
+
 .correct {
     border: solid 3px green;
+    pointer-events: none;
 }

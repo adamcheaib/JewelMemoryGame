@@ -39,6 +39,7 @@ function markSelected(event) {
     
 
     // All styling should be conducted through CSS due to Javscript-styling overwriting CSS-styling. I.e Change everything to classes!
+    // replce gameOptionsDoms-array with an array that selects all DOMS that do not have the class "correct". This disallows the user from re-clicking correct ones.
     if (allSelected.length == 2) {
         if (allSelected[0].getAttribute("value") === allSelected[1].getAttribute("value")) {
             console.log("Selected!");
