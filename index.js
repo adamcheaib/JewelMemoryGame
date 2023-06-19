@@ -19,7 +19,6 @@ function addOption(element) {
 gameOptionsDoms.forEach(addOption);
 
 function addImages(event) {
-
     for (let i = 0; i < classNames.length; i++) {
         switch (event.target.getAttribute("value") === classNames[i]) {
             case true:
@@ -31,29 +30,28 @@ function addImages(event) {
 
 gameOptionsDoms.forEach(optionDOM => optionDOM.addEventListener("click", addImages));
 
-// Control the "selected"-class has the length of two, then within the array, control if both have the same value.
 function markSelected(event) {
     event.target.classList.add("selected");
     const allSelected = document.querySelectorAll(".selected");
-    console.log(event.target.getAttribute("value"));
+    const allNoneSelected = document.getElementById("gameContainer").querySelectorAll("div:not(.selected)");
     
-
-    // All styling should be conducted through CSS due to Javscript-styling overwriting CSS-styling. I.e Change everything to classes!
-    // replce gameOptionsDoms-array with an array that selects all DOMS that do not have the class "correct". This disallows the user from re-clicking correct ones.
     if (allSelected.length == 2) {
         if (allSelected[0].getAttribute("value") === allSelected[1].getAttribute("value")) {
-            console.log("Selected!");
-            allSelected.forEach(selectedDOM => { selectedDOM.classList.remove("selected"); selectedDOM.classList.add("correct") });
+            allSelected.forEach(selectedDOM => { selectedDOM.classList.remove("selected"); selectedDOM.classList.add("correct"); selectedDOM.removeEventListener("click", markSelected) });
+            if (document.querySelectorAll(".correct").length == 12) {
+                setTimeout(() => alert("You won!"))
+            };
         } else {
-            allSelected.forEach(selectedDOM => {selectedDOM.style.border = "2px solid red"})
-            gameOptionsDoms.forEach(optionsDOM => optionsDOM.style.pointerEvents = "none");
+            allSelected.forEach(selectedDOM => selectedDOM.classList.add("wrong"));
+            allNoneSelected.forEach(optionsDOM => optionsDOM.style.pointerEvents = "none");
             setTimeout(() => {
-                allSelected.forEach(selectedDOM => { selectedDOM.style.backgroundImage = ""; selectedDOM.classList.remove("selected"); selectedDOM.style.border = "1px solid black"; });                
-                gameOptionsDoms.forEach(optionsDOM => optionsDOM.style.pointerEvents = "all");
+                allSelected.forEach(selectedDOM => { selectedDOM.style.backgroundImage = ""; selectedDOM.classList.remove("selected"); selectedDOM.classList.remove("wrong") });
+                allNoneSelected.forEach(optionsDOM => optionsDOM.style.pointerEvents = "all");
 
-            }, 1000)
+            }, 1000);
         }
     }
+
 }
 
 gameOptionsDoms.forEach(optionDOM => optionDOM.addEventListener("click", markSelected));

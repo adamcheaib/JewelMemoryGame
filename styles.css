@@ -5,7 +5,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    background-color: brown;
+    background-color: rgb(159, 159, 255);
 }
 
 #gameContainer {
@@ -35,10 +35,14 @@ body {
 }
 
 .wrong {
-
+border: solid 2px red;
 }
 
 .correct {
     border: solid 3px green;
     pointer-events: none;
+}
+
+.correct:hover {
+    cursor: default;
 }
