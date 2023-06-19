@@ -29,7 +29,30 @@ function addImages(event) {
     }
 }
 
+gameOptionsDoms.forEach(optionDOM => optionDOM.addEventListener("click", addImages));
+
 // Control the "selected"-class has the length of two, then within the array, control if both have the same value.
-function controlSelected(event) {
+function markSelected(event) {
     event.target.classList.add("selected");
+    const allSelected = document.querySelectorAll(".selected");
+    console.log(event.target.getAttribute("value"));
+    
+
+    // All styling should be conducted through CSS due to Javscript-styling overwriting CSS-styling. I.e Change everything to classes!
+    if (allSelected.length == 2) {
+        if (allSelected[0].getAttribute("value") === allSelected[1].getAttribute("value")) {
+            console.log("Selected!");
+            allSelected.forEach(selectedDOM => { selectedDOM.classList.remove("selected"); selectedDOM.classList.add("correct") });
+        } else {
+            allSelected.forEach(selectedDOM => {selectedDOM.style.border = "2px solid red"})
+            gameOptionsDoms.forEach(optionsDOM => optionsDOM.style.pointerEvents = "none");
+            setTimeout(() => {
+                allSelected.forEach(selectedDOM => { selectedDOM.style.backgroundImage = ""; selectedDOM.classList.remove("selected"); selectedDOM.style.border = "1px solid black"; });                
+                gameOptionsDoms.forEach(optionsDOM => optionsDOM.style.pointerEvents = "all");
+
+            }, 1000)
+        }
+    }
 }
+
+gameOptionsDoms.forEach(optionDOM => optionDOM.addEventListener("click", markSelected));

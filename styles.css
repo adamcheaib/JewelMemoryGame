@@ -29,3 +29,11 @@ body {
     background-repeat: no-repeat;
     background-color: white;
 }
+
+.gameOption:hover {
+    cursor: pointer;
+}
+
+.correct {
+    border: solid 3px green;
+}
