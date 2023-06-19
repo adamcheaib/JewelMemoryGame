@@ -5,14 +5,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    background-color: rgb(159, 159, 255);
+    background-color: #0E2954;
 }
 
 #gameContainer {
     height:750px;
     width: 850px;
     padding: 20px;
-    background-color: lightblue;
+    background-color: #1F6E8C;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
